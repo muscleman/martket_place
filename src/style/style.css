@@ -1,0 +1,120 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Rubik, sans-serif;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* header */
+.header-container {
+  margin-top: 1.2rem;
+  padding: 1.6rem 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  /* box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.1); */
+}
+
+.logo-img {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.btn-primary:link,
+.btn-primary:visited {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  margin-left: auto;
+  font-size: 1.6rem;
+  color: #fff;
+  padding: 1.2rem 2.4rem;
+  border-radius: 9px;
+  background-image: linear-gradient(to bottom right, #274cff, #16d1d6);
+  transition: all 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-image: linear-gradient(to bottom right, #203bc2, #13adb3);
+}
+
+/* Search */
+
+.search-container {
+  padding: 0 2.4rem;
+}
+
+.search-container form {
+  position: relative;
+}
+
+#search {
+  outline: none;
+  width: 100%;
+  border: none;
+  padding: 1.2rem 2.4rem;
+  border-radius: 9px;
+  box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  margin: 0.8rem -4rem;
+  fill: #203bc2;
+}
+
+/* filters */
+
+/* content */
+.content-container {
+  padding: 1.2rem 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.offer-card {
+  padding: 1.6rem 1.6rem;
+  box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* footer */
+.footer-container {
+  padding: 1.2rem 2.4rem;
+  margin-bottom: auto;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.6rem;
+}
