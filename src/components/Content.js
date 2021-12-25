@@ -1,25 +1,42 @@
 import React from "react";
 import logo from "../img/logo.png";
+import tshirt from "../img/Tshirt-design.jpg";
 
-const Content = () => {
-  return (
-    <div className="content-container">
-      <div className="offer-card">
-        <img className="offer-img" src={logo} />
-        <div className="offer-content">
-          <h3 className="offer-title">Offer title</h3>
-          <p className="offer-description">Offer description</p>
-          <p className="offer-categories">Offer categories</p>
-          <p className="offer-price">300 $ZANO</p>
-        </div>
-        <div className="offer-buttons">
-          <a href="#" className="btn-primary">
-            Respond
-          </a>
-        </div>
+const Content = ({ offers }) => {
+  console.log(offers);
+  if (offers.length) {
+    return (
+      <div className="content-container">
+        {offers.map((offer) => (
+          <div key={offer.tx_hash} className="offer-card">
+            <img
+              className="offer-img"
+              src={tshirt}
+              alt="Marketplace offer pic"
+            />
+            <div className="offer-content">
+              <h3 className="offer-title">{offer.t}</h3>
+              <p className="offer-categories">{offer.cat}</p>
+              <p className="offer-price">
+                <strong>{offer.ap}</strong> $ZANO
+              </p>
+              <p className="offer-description">{offer.com}</p>
+
+              <p className="offer-contact">{offer.cnt}</p>
+            </div>
+
+            <div className="offer-buttons">
+              <a href="#" className="btn-primary">
+                Respond
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div className="content-container">No offers found</div>;
+  }
 };
 
 export default Content;

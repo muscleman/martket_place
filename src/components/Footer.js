@@ -1,12 +1,12 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ totalOffers }) => {
   return (
     <div className="footer-container">
-      <nav className="footer-links">
-        <p>About</p>
-        <p>Docs</p>
-        <p>Zano.org</p>
+      <nav className="chain-data">
+        <p>
+          <strong>{totalOffers}</strong> offers available on chain
+        </p>
       </nav>
     </div>
   );
