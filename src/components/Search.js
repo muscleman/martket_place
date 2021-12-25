@@ -5,6 +5,7 @@ const Search = (props) => {
 
   const onInputChange = (e) => {
     setTerm(e.target.value);
+    onFormSubmit(e);
   };
 
   const onFormSubmit = (e) => {

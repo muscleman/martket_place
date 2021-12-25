@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Search from "./Search";
@@ -56,6 +57,10 @@ const App = () => {
     }
   };
 
+  const throttleSearch = _.debounce((term) => {
+    runSearch(term);
+  }, 300);
+
   useEffect(() => {
     getTotalOffers();
     getOffers();
@@ -64,7 +69,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <Search onTermSubmit={runSearch} />
+      <Search onTermSubmit={throttleSearch} />
       <Content offers={offers} />
       <Footer totalOffers={totalOffers} />
     </div>
