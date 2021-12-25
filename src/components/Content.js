@@ -3,7 +3,6 @@ import logo from "../img/logo.png";
 import tshirt from "../img/Tshirt-design.jpg";
 
 const Content = ({ offers }) => {
-  console.log(offers);
   if (offers.length) {
     return (
       <div className="content-container">

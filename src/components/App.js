@@ -46,7 +46,6 @@ const App = () => {
       });
 
       const body = await res.json();
-      console.log("from search", body.result.offers);
       if (body.result.offers) {
         setOffers(body.result.offers);
       } else {
