@@ -29,6 +29,34 @@ const App = () => {
     }
   };
 
+  const runSearch = async (term) => {
+    try {
+      const res = await fetch("http://localhost:9000/runSearch", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ term }),
+      });
+
+      const body = await res.json();
+      console.log("from search", body.result.offers);
+      if (body.result.offers) {
+        setOffers(body.result.offers);
+      } else {
+        setOffers([]);
+      }
+    } catch (e) {
+      console.log("fetch error", e);
+    }
+  };
+
   useEffect(() => {
     getTotalOffers();
     getOffers();
@@ -37,7 +65,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <Search />
+      <Search onTermSubmit={runSearch} />
       <Content offers={offers} />
       <Footer totalOffers={totalOffers} />
     </div>

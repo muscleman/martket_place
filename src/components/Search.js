@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Search = () => {
+const Search = (props) => {
   const [term, setTerm] = useState("");
 
   const onInputChange = (e) => {
@@ -9,31 +9,8 @@ const Search = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log(term);
-    runSearch(term);
-  };
 
-  const runSearch = async (term) => {
-    try {
-      const res = await fetch("http://localhost:9000/runSearch", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify({ term }),
-      });
-
-      const body = await res.json();
-      console.log(body.result.offers);
-    } catch (e) {
-      console.log("fetch error", e);
-    }
+    props.onTermSubmit(term);
   };
 
   return (
