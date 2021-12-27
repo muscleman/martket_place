@@ -10,45 +10,37 @@ const App = () => {
   const [totalOffers, setTotalOffers] = useState(0);
   const [offers, setOffers] = useState([]);
 
-  const getTotalOffers = async () => {
+  const getOffers = async (offset) => {
     try {
-      const res = await fetch("http://localhost:9000/totalOffers");
+      const res = await fetch("http://localhost:9000/getOffers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ offset }),
+      });
       const body = await res.json();
+      setOffers([...offers, ...body.result.offers]);
       setTotalOffers(body.result.total_offers);
     } catch (e) {
       console.log("fetch error", e);
     }
   };
 
-  const getOffers = async () => {
-    try {
-      const res = await fetch("http://localhost:9000/getOffers");
-      const body = await res.json();
-      setOffers(body.result.offers);
-    } catch (e) {
-      console.log("fetch error", e);
-    }
-  };
-
-  const runSearch = async (term) => {
+  const runSearch = async (offset, term) => {
     try {
       const res = await fetch("http://localhost:9000/runSearch", {
         method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify({ term }),
+        body: JSON.stringify({ offset, term }),
       });
 
       const body = await res.json();
       if (body.result.offers) {
         setOffers(body.result.offers);
+        setTotalOffers(body.result.offers.length);
       } else {
         setOffers([]);
       }
@@ -58,11 +50,10 @@ const App = () => {
   };
 
   const throttleSearch = _.debounce((term) => {
-    runSearch(term);
+    runSearch(1, term);
   }, 300);
 
   useEffect(() => {
-    getTotalOffers();
     getOffers();
   }, []);
 
@@ -70,7 +61,11 @@ const App = () => {
     <div className="container">
       <Header />
       <Search onTermSubmit={throttleSearch} />
-      <Content offers={offers} />
+      <Content
+        offers={offers}
+        totalOffers={totalOffers}
+        getOffers={getOffers}
+      />
       <Footer totalOffers={totalOffers} />
     </div>
   );

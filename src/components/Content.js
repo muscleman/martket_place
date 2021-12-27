@@ -1,9 +1,10 @@
-import React from "react";
-import logo from "../img/logo.png";
+import React, { useState } from "react";
 import tshirt from "../img/Tshirt-design.jpg";
 
-const Content = ({ offers }) => {
-  if (offers.length) {
+const Content = ({ offers, totalOffers, getOffers }) => {
+  const [offset, setOffset] = useState(100);
+
+  if (offers?.length) {
     return (
       <div className="content-container">
         {offers.map((offer) => (
@@ -31,10 +32,22 @@ const Content = ({ offers }) => {
             </div>
           </div>
         ))}
+        <div className="load-more">
+          {totalOffers > offers.length && (
+            <p
+              onClick={() => {
+                getOffers(offset);
+                setOffset(offset + 100);
+              }}
+            >
+              Load more...
+            </p>
+          )}
+        </div>
       </div>
     );
   } else {
-    return <div className="content-container">No offers found</div>;
+    return <div className="content-container">No offers available</div>;
   }
 };
 

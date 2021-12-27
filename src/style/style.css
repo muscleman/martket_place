@@ -97,7 +97,7 @@ body {
   padding: 1.2rem 2.4rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 1.2rem;
+  gap: 1.2rem;
 }
 
 .offer-card {
@@ -133,6 +133,16 @@ body {
 
 .offer-contact {
   font-weight: 500;
+  color: #274cff;
+  cursor: pointer;
+}
+
+.load-more {
+  align-self: center;
+  justify-self: center;
+}
+
+.load-more p {
   color: #274cff;
   cursor: pointer;
 }

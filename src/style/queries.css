@@ -1,0 +1,15 @@
+@media (max-width: 56em) {
+  html {
+    font-size: 50%;
+  }
+
+  .content-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 35em) {
+  .content-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
