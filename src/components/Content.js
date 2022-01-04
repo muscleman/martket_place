@@ -32,7 +32,7 @@ const Content = ({ offers, totalOffers, getOffers }) => {
             </div>
           </div>
         ))}
-        <div className="load-more">
+        {/* <div className="load-more">
           {totalOffers > offers.length && (
             <p
               onClick={() => {
@@ -43,7 +43,7 @@ const Content = ({ offers, totalOffers, getOffers }) => {
               Load more...
             </p>
           )}
-        </div>
+        </div> */}
       </div>
     );
   } else {

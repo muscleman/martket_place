@@ -1,46 +1,55 @@
 import _ from "lodash";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Search from "./Search";
 import Filters from "./Filters";
 import Content from "./Content";
 import Footer from "./Footer";
+import NewOffer from "./NewOffer";
 
 const App = () => {
   const [totalOffers, setTotalOffers] = useState(0);
   const [offers, setOffers] = useState([]);
+  const [showOfferPopup, setShowOfferPopup] = useState(false);
 
-  const getOffers = async (offset) => {
+  const getOffers = async (offset = 0, term = "") => {
     try {
-      const res = await fetch("http://localhost:9000/getOffers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await axios.post("/json_rpc", {
+        jsonrpc: "2.0",
+        id: "0",
+        method: "marketplace_global_get_offers_ex",
+        params: {
+          filter: {
+            amount_low_limit: 0,
+            amount_up_limit: 0,
+            bonus: false,
+            category: "",
+            fake: false,
+            keyword: term,
+            limit: 100,
+            location_city: "",
+            location_country: "",
+            offer_type_mask: 0,
+            offset: offset,
+            order_by: 0,
+            primary: "",
+            rate_low_limit: "0.000000",
+            rate_up_limit: "0.000000",
+            reverse: false,
+            target: "",
+            timestamp_start: 0,
+            timestamp_stop: 0,
+          },
         },
-        body: JSON.stringify({ offset }),
       });
-      const body = await res.json();
-      setOffers([...offers, ...body.result.offers]);
-      setTotalOffers(body.result.total_offers);
-    } catch (e) {
-      console.log("fetch error", e);
-    }
-  };
-
-  const runSearch = async (offset, term) => {
-    try {
-      const res = await fetch("http://localhost:9000/runSearch", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ offset, term }),
-      });
-
-      const body = await res.json();
-      if (body.result.offers) {
-        setOffers(body.result.offers);
-        setTotalOffers(body.result.offers.length);
+      if (res.data.result.offers && offset !== 0) {
+        setOffers([...offers, ...res.data.result.offers]);
+        setTotalOffers(res.data.result.total_offers);
+      }
+      if (res.data.result.offers) {
+        setOffers(res.data.result.offers);
+        setTotalOffers(res.data.result.total_offers);
       } else {
         setOffers([]);
       }
@@ -50,8 +59,12 @@ const App = () => {
   };
 
   const throttleSearch = _.debounce((term) => {
-    runSearch(1, term);
+    getOffers(0, term);
   }, 300);
+
+  const openPopup = () => {
+    showOfferPopup ? setShowOfferPopup(false) : setShowOfferPopup(true);
+  };
 
   useEffect(() => {
     getOffers();
@@ -59,13 +72,16 @@ const App = () => {
 
   return (
     <div className="container">
-      <Header />
-      <Search onTermSubmit={throttleSearch} />
-      <Content
-        offers={offers}
-        totalOffers={totalOffers}
-        getOffers={getOffers}
-      />
+      <Header openPopup={openPopup} isOpen={showOfferPopup} />
+      {showOfferPopup && <NewOffer />}
+      {!showOfferPopup && <Search onTermSubmit={throttleSearch} />}
+      {!showOfferPopup && (
+        <Content
+          offers={offers}
+          totalOffers={totalOffers}
+          getOffers={getOffers}
+        />
+      )}
       <Footer totalOffers={totalOffers} />
     </div>
   );
