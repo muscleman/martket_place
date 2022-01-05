@@ -39,27 +39,30 @@ const NewOffer = () => {
         <div className="offer-card">
           <img className="offer-img" src={tshirt} alt="Marketplace offer pic" />
           <div className="offer-content">
-            <h3 className="offer-title">Title</h3>
-            <p className="offer-categories">Category</p>
-            <p className="offer-price">
-              <strong>100</strong> $ZANO
-            </p>
-            <p className="offer-description">Comments</p>
+            <h3 className="offer-title"></h3>
+            <p className="offer-categories"></p>
+            <p className="offer-price"></p>
+            <p className="offer-description"></p>
 
-            <p className="offer-contact">Contacts</p>
+            <p className="offer-contact"></p>
+            <p className="offer-comments"></p>
+            <p className="offer-expiration">*Expires in 2 days</p>
           </div>
 
-          <div className="offer-buttons">
+          {/* <div className="offer-buttons">
             <a href="#" className="btn-primary">
               Respond
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
       <div>
         <a href="#" className="btn-popup">
-          Submit offer
+          Submit Offer
         </a>
+        <p className="offer-submit-text">
+          *You will need to confirm submission with Zano wallet
+        </p>
       </div>
     </div>
   );

@@ -17,19 +17,23 @@ const Content = ({ offers, totalOffers, getOffers }) => {
             <div className="offer-content">
               <h3 className="offer-title">{offer.t}</h3>
               <p className="offer-categories">{offer.cat}</p>
-              <p className="offer-price">
-                <strong>{offer.ap}</strong> $ZANO
+              <p className="offer-price">{offer.ap}&nbsp;ZANO</p>
+              <p className="offer-description">
+                {offer.do
+                  ? offer.do
+                  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}
               </p>
-              <p className="offer-description">{offer.com}</p>
 
               <p className="offer-contact">{offer.cnt}</p>
+              <p className="offer-comments">{offer.com}</p>
+              <p className="offer-expiration">*Expires in 2 days</p>
             </div>
 
-            <div className="offer-buttons">
+            {/* <div className="offer-buttons">
               <a href="#" className="btn-primary">
                 Respond
               </a>
-            </div>
+            </div> */}
           </div>
         ))}
         {/* <div className="load-more">
