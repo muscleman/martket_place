@@ -1,25 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import tshirt from "./../img/Tshirt-design.jpg";
 
 const NewOffer = () => {
+  const [title, setTitle] = useState("Offer title");
+  const [description, setDescription] = useState("Detailed offer description");
+  const [category, setCategory] = useState("Category-Item");
+  const [price, setPrice] = useState("10");
+  const [imageUrl, setImageUrl] = useState("");
+  const [contact, setContact] = useState("@username");
+  const [comment, setComment] = useState("");
+
   return (
     <div className="popup-container">
       <form className="offer-form">
         <div>
           <label for="offer-title">Title</label>
-          <input type="text" id="offer-title" required />
+          <input
+            type="text"
+            id="offer-title"
+            required
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
         <div>
           <label for="offer-description">Description</label>
-          <input type="text" id="offer-description" />
+          <input
+            type="text"
+            id="offer-description"
+            required
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
         <div>
           <label for="offer-category">Category</label>
-          <input type="text" id="offer-category" />
+          <input
+            type="text"
+            id="offer-category"
+            onChange={(e) => setCategory(e.target.value)}
+          />
         </div>
         <div>
           <label for="offer-price">Price</label>
-          <input type="text" id="offer-price" />
+          <input
+            type="text"
+            id="offer-price"
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </div>
         <div>
           <label for="offer-img">Image link</label>
@@ -27,11 +53,19 @@ const NewOffer = () => {
         </div>
         <div>
           <label for="offer-contact">Contact details</label>
-          <input type="text" id="offer-contact" />
+          <input
+            type="text"
+            id="offer-contact"
+            onChange={(e) => setContact(e.target.value)}
+          />
         </div>
         <div>
           <label for="offer-comment">Comments</label>
-          <input type="text" id="offer-comment" />
+          <input
+            type="text"
+            id="offer-comment"
+            onChange={(e) => setComment(e.target.value)}
+          />
         </div>
       </form>
       <div className="offer-preview">
@@ -39,13 +73,13 @@ const NewOffer = () => {
         <div className="offer-card">
           <img className="offer-img" src={tshirt} alt="Marketplace offer pic" />
           <div className="offer-content">
-            <h3 className="offer-title"></h3>
-            <p className="offer-categories"></p>
-            <p className="offer-price"></p>
-            <p className="offer-description"></p>
+            <h3 className="offer-title">{title}</h3>
+            <p className="offer-categories">{category}</p>
+            <p className="offer-price">{price}</p>
+            <p className="offer-description">{description}</p>
 
-            <p className="offer-contact"></p>
-            <p className="offer-comments"></p>
+            <p className="offer-contact">{contact}</p>
+            <p className="offer-comments">{comment}</p>
             <p className="offer-expiration">*Expires in 2 days</p>
           </div>
 

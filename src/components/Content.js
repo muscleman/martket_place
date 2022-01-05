@@ -11,7 +11,7 @@ const Content = ({ offers, totalOffers, getOffers }) => {
           <div key={offer.tx_hash} className="offer-card">
             <img
               className="offer-img"
-              src={tshirt}
+              src={offer.url ? offer.url : tshirt}
               alt="Marketplace offer pic"
             />
             <div className="offer-content">
