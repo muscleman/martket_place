@@ -75,7 +75,7 @@ const NewOffer = () => {
           <div className="offer-content">
             <h3 className="offer-title">{title}</h3>
             <p className="offer-categories">{category}</p>
-            <p className="offer-price">{price}</p>
+            <p className="offer-price">{price} ZANO</p>
             <p className="offer-description">{description}</p>
 
             <p className="offer-contact">{contact}</p>

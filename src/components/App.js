@@ -2,8 +2,6 @@ import _ from "lodash";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import Search from "./Search";
-import Filters from "./Filters";
 import Content from "./Content";
 import Footer from "./Footer";
 import NewOffer from "./NewOffer";
@@ -72,9 +70,12 @@ const App = () => {
 
   return (
     <div className="container">
-      <Header openPopup={openPopup} isOpen={showOfferPopup} />
+      <Header
+        openPopup={openPopup}
+        isOpen={showOfferPopup}
+        onTermSubmit={throttleSearch}
+      />
       {showOfferPopup && <NewOffer />}
-      {!showOfferPopup && <Search onTermSubmit={throttleSearch} />}
       {!showOfferPopup && (
         <Content
           offers={offers}
