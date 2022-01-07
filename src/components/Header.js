@@ -20,7 +20,11 @@ const Header = ({ isOpen, openPopup, onTermSubmit }) => {
       <a href="/">
         <img src={logo} className="logo-img" alt="Zano logo" />
       </a>
-      <form className="search-form" onSubmit={onFormSubmit}>
+      <form
+        className="search-form"
+        onSubmit={onFormSubmit}
+        onClick={isOpen && openPopup}
+      >
         {/* <SearchIcon/> */}
         <svg
           width="24"
@@ -55,7 +59,7 @@ const Header = ({ isOpen, openPopup, onTermSubmit }) => {
         />
       </form>
       <button onClick={openPopup} className="btn-primary">
-        {isOpen ? "Back" : "Submit New Offer"}
+        {isOpen ? "Go Back" : "Submit New Offer"}
       </button>
     </div>
   );
