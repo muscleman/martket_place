@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import logo from "../img/zano_mp_logo.png";
-import { ReactComponent as SearchIcon } from "../img/icons/search.svg";
 
 const Header = ({ isOpen, openPopup, onTermSubmit }) => {
   const [term, setTerm] = useState("");
