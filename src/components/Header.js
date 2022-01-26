@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { Store } from "../store/store-reducer";
 import logo from "../img/zano_mp_logo.png";
 
-const Header = ({ isOpen, openPopup, onTermSubmit }) => {
-  const [term, setTerm] = useState("");
+import { updateSearchKeyword, newOfferPopup } from "../store/actions";
+
+const Header = () => {
+  const { state, dispatch } = useContext(Store);
 
   const onInputChange = (e) => {
-    setTerm(e.target.value);
-    onFormSubmit(e);
+    updateSearchKeyword(dispatch, e.target.value);
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    onTermSubmit(term);
+  };
+
+  const openPopup = () => {
+    state.newOfferPopup
+      ? newOfferPopup(dispatch, false)
+      : newOfferPopup(dispatch, true);
   };
 
   return (
@@ -22,7 +29,7 @@ const Header = ({ isOpen, openPopup, onTermSubmit }) => {
       <form
         className="search-form"
         onSubmit={onFormSubmit}
-        onClick={isOpen && openPopup}
+        onClick={state.newOfferPopup ? () => openPopup() : undefined}
       >
         {/* <SearchIcon/> */}
         <svg
@@ -36,16 +43,16 @@ const Header = ({ isOpen, openPopup, onTermSubmit }) => {
           <path
             d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
             stroke="#BDCCE3"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M21 21L16.65 16.65"
             stroke="#BDCCE3"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
 
@@ -53,12 +60,12 @@ const Header = ({ isOpen, openPopup, onTermSubmit }) => {
           id="search"
           type="search"
           placeholder="Search..."
-          value={term}
+          value={state.keyword}
           onChange={onInputChange}
         />
       </form>
-      <button onClick={openPopup} className="btn-primary">
-        {isOpen ? "Go Back" : "Submit New Offer"}
+      <button onClick={() => openPopup()} className="btn-primary">
+        {state.newOfferPopup ? "Go Back" : "Submit New Offer"}
       </button>
     </div>
   );

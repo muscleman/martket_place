@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Store } from "../store/store-reducer";
 
-const Footer = ({ totalOffers }) => {
+const Footer = () => {
+  const { state } = useContext(Store);
+
   return (
     <div className="footer-container">
       <nav className="chain-data">
         <p>
-          <strong>{totalOffers}</strong> offers available on chain
+          <strong>{state.offers.totalOffers}</strong> offers available on chain
         </p>
       </nav>
     </div>
