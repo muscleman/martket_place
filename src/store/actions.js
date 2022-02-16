@@ -1,7 +1,7 @@
-export const setLoading = (dispatch, loading) => {
+export const setMessage = (dispatch, message) => {
   return dispatch({
-    type: "SET_LOADING",
-    payload: loading,
+    type: "SET_MESSAGE",
+    payload: message,
   });
 };
 

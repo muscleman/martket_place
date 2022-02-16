@@ -21,11 +21,40 @@ h1 {
 }
 
 .container {
+  position: relative;
   max-width: 120rem;
   margin: 0 auto;
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* notification */
+.notification {
+  position: absolute;
+  top: 0.8em;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 0.8em 1.6em;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  box-shadow: 5px 15px 60px 0px #0d0c3a26;
+  color: #0d0c3a;
+}
+
+.notification-icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.notification-close {
+  position: absolute;
+  width: 1em;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -30%);
 }
 
 /* header */

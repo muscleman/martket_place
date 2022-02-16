@@ -80,7 +80,7 @@ const Content = () => {
     );
   };
 
-  return state.loading
+  return state.message.type === "loading"
     ? renderLoading()
     : state.offers.offersList
     ? renderCards()

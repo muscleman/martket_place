@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Store } from "../store/store-reducer";
+import { setMessage } from "../store/actions";
 import noPhoto from "../img/no_photo.png";
 
 const NewOffer = () => {
@@ -10,11 +12,26 @@ const NewOffer = () => {
   const [contact, setContact] = useState("@username");
   const [comment, setComment] = useState("");
 
+  const { state, dispatch } = useContext(Store);
+
+  const createOfferLink = (e) => {
+    e.preventDefault();
+    const url = `zano:action=marketplace_offer_create&mixins=10&hide_sender=true&hide_receiver=true&title='${title}'&description='${description}'&category='${category}'&price=${price}&img-url='${
+      imageUrl ? imageUrl : ""
+    }'&contact='${contact}'&comments='${comment ? comment : ""}'`;
+    window.location = url;
+    setMessage(dispatch, {
+      isLoading: true,
+      type: "success",
+      text: "Please confirm your submission with Zano wallet",
+    });
+  };
+
   return (
     <div className="popup-container">
       <h1>New Offer</h1>
       <div className="offer-container">
-        <form className="offer-form">
+        <form className="offer-form" onSubmit={createOfferLink}>
           <div>
             <label htmlFor="offer-title">Title</label>
             <input
@@ -30,6 +47,7 @@ const NewOffer = () => {
               type="text"
               id="offer-category"
               onChange={(e) => setCategory(e.target.value)}
+              required
             />
           </div>
           <div>
@@ -62,6 +80,7 @@ const NewOffer = () => {
                 type="text"
                 id="offer-price"
                 onChange={(e) => setPrice(e.target.value)}
+                required
               />
             </div>
 
@@ -85,6 +104,7 @@ const NewOffer = () => {
                 type="text"
                 id="offer-contact"
                 onChange={(e) => setContact(e.target.value)}
+                required
               />
             </div>
           </div>

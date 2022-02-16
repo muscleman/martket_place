@@ -8,15 +8,19 @@ const initialState = {
   },
   newOfferPopup: false,
   daemonOnline: false,
-  loading: true,
+  message: {
+    isLoading: false,
+    type: null,
+    text: null,
+  },
 };
 
 export const Store = createContext(initialState);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SET_LOADING":
-      return { ...state, loading: action.payload };
+    case "SET_MESSAGE":
+      return { ...state, message: action.payload };
     case "OFFERS_UPDATED":
       return { ...state, offers: action.payload };
     case "SEARCH_KEYWORD":

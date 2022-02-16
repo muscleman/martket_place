@@ -4,32 +4,48 @@ import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 import NewOffer from "./NewOffer";
+import Notification from "./Notification";
 
 import { getOffersFromDaemon } from "../helpers";
 
 import { Store } from "../store/store-reducer";
-import { updateOffers, setLoading } from "../store/actions";
+import { updateOffers, setMessage } from "../store/actions";
 
 const App = () => {
   const { state, dispatch } = useContext(Store);
 
   const getOffers = async () => {
-    setLoading(dispatch, true);
-
+    setMessage(dispatch, {
+      isLoading: true,
+      type: "loading",
+      text: "Loading offers...",
+    });
     const { keyword } = state;
-    const result = await getOffersFromDaemon(keyword);
-    if (result.offers) {
-      updateOffers(dispatch, {
-        totalOffers: result.total_offers,
-        offersList: result.offers,
+    try {
+      const result = await getOffersFromDaemon(keyword);
+      if (result.offers) {
+        updateOffers(dispatch, {
+          totalOffers: result.total_offers,
+          offersList: result.offers,
+        });
+      } else {
+        updateOffers(dispatch, {
+          totalOffers: [],
+          offersList: 0,
+        });
+      }
+      setMessage(dispatch, {
+        isLoading: false,
+        type: null,
+        text: null,
       });
-    } else {
-      updateOffers(dispatch, {
-        totalOffers: [],
-        offersList: 0,
+    } catch (err) {
+      setMessage(dispatch, {
+        isLoading: true,
+        type: "error",
+        text: "Something went wrong",
       });
     }
-    setLoading(dispatch, false);
   };
 
   // const throttleSearch = _.debounce((term) => {
@@ -43,6 +59,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
+      {state.message.isLoading && <Notification />}
       {state.newOfferPopup ? <NewOffer /> : <Content />}
       <Footer />
     </div>
