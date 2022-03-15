@@ -30,8 +30,8 @@ const App = () => {
         });
       } else {
         updateOffers(dispatch, {
-          totalOffers: [],
-          offersList: 0,
+          totalOffers: 0,
+          offersList: [],
         });
       }
       setMessage(dispatch, {
@@ -39,6 +39,8 @@ const App = () => {
         type: null,
         text: null,
       });
+
+      console.log(state);
     } catch (err) {
       setMessage(dispatch, {
         isLoading: true,

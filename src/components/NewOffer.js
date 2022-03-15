@@ -12,11 +12,11 @@ const NewOffer = () => {
   const [contact, setContact] = useState("@username");
   const [comment, setComment] = useState("");
 
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
 
   const createOfferLink = (e) => {
     e.preventDefault();
-    const url = `zano:action=marketplace_offer_create&mixins=10&hide_sender=true&hide_receiver=true&title='${title}'&description='${description}'&category='${category}'&price=${price}&img-url='${
+    const url = `zano:action=marketplace_offer_create&mixins=10&hide_sender=true&hide_receiver=true&title='${title}'&description='${description}'&category='${category}'&price=${price}&url='${
       imageUrl ? imageUrl : ""
     }'&contact='${contact}'&comments='${comment ? comment : ""}'`;
     window.location = url;
@@ -173,7 +173,7 @@ const NewOffer = () => {
               <div className="offer-expiration">
                 <p>Expires in</p>
                 <p>
-                  <strong>2 days</strong>
+                  <strong>10 days</strong>
                 </p>
               </div>
             </div>
