@@ -1,0 +1,44 @@
+// Colors
+$black: #000000;
+$white: #ffffff;
+$border: #cccccc;
+$primary-bg: #f7f7f7;
+$gray: #6e6d89;
+$info-btn-bg: rgba(255, 255, 255, 0.5);
+$info-btn-bg-hover: rgba(255, 255, 255, 0.9);
+$expiration-bg: rgba(255, 255, 255, 0.9);
+$blue: #274cff;
+$green: #16d1d6;
+$pagination-hover: #dfdfe5;
+
+$primary-text-color: #0d0c3a;
+$light-text-color: rgba(255, 255, 255, 0.6);
+$dark-gray-text-color: rgba(13, 12, 58, 0.6);
+$gray-text-color: #949daa;
+$secondary-gray-text-color: #aaaaaa;
+
+$button-background: linear-gradient(to right, $blue, $green);
+$button-background-disabled: #949daa;
+$button-background-hover: linear-gradient(to right, $green, $blue);
+$card-background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%), linear-gradient(90deg, #2E57FD 0%, #1CD4DC 100%), #F9F9F9;
+
+$primary-border-radius: 2rem;
+$secondary-border-radius: 1.5rem;
+
+$base-shadow: 0.5rem 1.5rem 6rem rgba(13, 12, 58, 0.15);
+
+// Notifications
+$notifications-border: 1px solid rgba(0, 0, 0, 0.1);
+
+// Forms
+$input-focus-border: 1px solid #0d0c3a;
+$input-border: 1px solid #f2f2f2;
+$input-border-radius: 0.3rem;
+$search-input-hover: 0 0 0 0.4rem rgb(0 0 0 / 5%);
+
+// Fonts
+$primary-font: Roboto, sans-serif;
+$secondary-font: sans-serif;
+
+// Other
+$base-transition: all 0.3s ease;

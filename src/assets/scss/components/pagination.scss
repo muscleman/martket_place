@@ -1,0 +1,75 @@
+.pagination-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+
+  .buttons-wrap {
+    display: flex;
+    align-items: center;
+    margin: 1rem auto 0;
+
+    .pagination-links {
+      margin: 0 2rem;
+      display: flex;
+      overflow: hidden;
+      max-width: 300px;
+
+      .link {
+        //margin-right: 1rem;
+        font-size: 1.6rem;
+        border-radius: $primary-border-radius;
+        padding: 0.5rem;
+
+        &:hover {
+          background-color: $pagination-hover;
+        }
+
+        &.active {
+          background-color: $green;
+
+          &:hover {
+            background-color: #23abaf;
+          }
+        }
+
+        &.hide:not(:first-child):not(:last-child) {
+          display: none !important;
+        }
+
+        &.dot:not(:last-child) {
+          max-height: 0.4rem;
+          max-width: 0.4rem;
+          overflow: hidden;
+          padding: 0;
+          margin-right: 0.4rem;
+          background-color: $black;
+          margin-top: 1.7rem;
+        }
+
+        &:first-child {
+          margin-right: 0;
+          position: sticky;
+          left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+          position: sticky;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    .custom-select {
+      margin-right: 1rem;
+    }
+    .buttons-wrap {
+      margin: 0 auto;
+    }
+  }
+}
