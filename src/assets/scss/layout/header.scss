@@ -1,0 +1,35 @@
+.header {
+  padding: 3.2rem 0 3rem;
+
+  .row {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 760px) {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+
+    a {
+      height: 4.7rem;
+      min-width: 14.3rem;
+    }
+
+    .btn-primary {
+      &.user {
+        min-width: 4.5rem;
+        min-height: 4.5rem;
+        max-width: 4.5rem;
+        max-height: 4.5rem;
+      }
+      &.new-offer {
+        min-width: 19.2rem;
+        min-height: 4.5rem;
+        white-space: nowrap;
+      }
+    }
+  }
+}

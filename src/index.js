@@ -2,13 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import { StoreProvider } from "./store/store-reducer";
-import "./style/style.css";
-import "./style/queries.css";
+import "./assets/scss/style.scss";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider>
-      <App />
+      <CookiesProvider>
+        <App/>
+      </CookiesProvider>
     </StoreProvider>
   </React.StrictMode>,
   document.querySelector("#root")

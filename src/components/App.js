@@ -1,18 +1,18 @@
-import _ from "lodash";
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 import NewOffer from "./NewOffer";
 import Notification from "./Notification";
-
+import Pagination from "./Pagination";
 import { getOffersFromDaemon } from "../helpers";
-
 import { Store } from "../store/store-reducer";
-import { updateOffers, setMessage } from "../store/actions";
+import { setMessage, setMyOfferIds, updateOffers } from "../store/actions";
+import { useCookies } from "react-cookie";
 
 const App = () => {
   const { state, dispatch } = useContext(Store);
+  const [cookies] = useCookies();
 
   const getOffers = async () => {
     setMessage(dispatch, {
@@ -20,9 +20,10 @@ const App = () => {
       type: "loading",
       text: "Loading offers...",
     });
-    const { keyword } = state;
+    const { keyword, pagination } = state;
     try {
-      const result = await getOffersFromDaemon(keyword);
+      const result = await getOffersFromDaemon(keyword, pagination.limit, pagination.offset);
+
       if (result.offers) {
         updateOffers(dispatch, {
           totalOffers: result.total_offers,
@@ -40,7 +41,6 @@ const App = () => {
         text: null,
       });
 
-      console.log(state);
     } catch (err) {
       setMessage(dispatch, {
         isLoading: true,
@@ -50,20 +50,25 @@ const App = () => {
     }
   };
 
-  // const throttleSearch = _.debounce((term) => {
-  //   getOffersFromDaemon(keyword);
-  // }, 300);
+  useEffect(() => {
+    setMyOfferIds(dispatch, cookies?.myOfferIds || []);
+  }, [dispatch, cookies]);
 
   useEffect(() => {
-    getOffers();
-  }, [state.keyword]);
+    getOffers().then();
+  }, [state.keyword, state.pagination]);
+
+
 
   return (
-    <div className="container">
-      <Header />
-      {state.message.isLoading && <Notification />}
-      {state.newOfferPopup ? <NewOffer /> : <Content />}
-      <Footer />
+    <div className="wrapper">
+      <Header/>
+      <main>
+        { state.message.isLoading && <Notification/> }
+        { state.newOfferPage ? <NewOffer/> : <Content/> }
+        { (!state.newOfferPage && state.offers.totalOffers > 10) && <Pagination/> }
+      </main>
+      <Footer/>
     </div>
   );
 };

@@ -1,0 +1,164 @@
+.offer-card {
+  position: relative;
+  background-color: $primary-bg;
+  display: flex;
+  flex-direction: column;
+  max-width: 41rem;
+  width: 100%;
+  border-radius: $primary-border-radius;
+  transition: $base-transition;
+
+  &.with_hover:hover {
+    box-shadow: $base-shadow;
+    transform: translate(-2px, -2px);
+  }
+
+  .info {
+    z-index: 1;
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    background-color: #2b66d3;
+    border-radius: 50%;
+
+    &.none {
+      display: none;
+    }
+
+    .info-button {
+      background-color: $info-btn-bg;
+
+      &:hover {
+        background-color: $info-btn-bg-hover;
+      }
+
+      cursor: pointer;
+      height: 5rem;
+      width: 5rem;
+      border-radius: 50%;
+      padding-top: 0.3rem;
+    }
+  }
+
+  .content {
+    border-radius: $primary-border-radius;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .top-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $primary-border-radius;
+      background: $card-background;
+      overflow: hidden;
+      position: relative;
+      min-height: 27.8rem;
+      max-height: 63rem ;
+      max-width: 41rem;
+
+      .img {
+        color: white;
+      }
+
+      .row {
+        position: absolute;
+        bottom: 2rem;
+        left: 3rem;
+        right: 3rem;
+        gap: 1rem;
+        flex-wrap: nowrap;
+        .col:first-child {
+          width: 60%;
+        }
+      }
+
+      .title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+        font-size: 2.4rem;
+        line-height: 1.2;
+        text-transform: capitalize;
+        color: $white;
+      }
+
+      .categories {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.18;
+        color: $light-text-color;
+      }
+
+      .expiration {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: 700;
+        line-height: 1.67;
+        font-size: 1.2rem;
+        padding: 1.2rem;
+        background-color: $expiration-bg;
+        border-radius: $secondary-border-radius;
+        min-width: 8.7rem;
+
+        label {
+          color: $dark-gray-text-color;
+        }
+
+        p {
+          font-size: 1.8rem;
+          line-height: 1.17;
+        }
+      }
+    }
+
+    .bottom-block {
+      padding: 2rem 3rem 4rem;
+      .row {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .description {
+        margin-bottom: 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .price {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+
+        span {
+          max-width: 14rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .contact {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-weight: 700;
+        font-size: 1.8rem;
+        line-height: 1.45;
+        color: $blue;
+        max-width: 14rem;
+
+        span {
+          white-space: nowrap;
+          max-width: 14rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}

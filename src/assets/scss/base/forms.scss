@@ -1,0 +1,224 @@
+// This is base reset for form elements
+form,
+fieldset {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+textarea {
+  -webkit-appearance: none;
+  outline: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: none;
+  font-family: $primary-font;
+  color: $primary-text-color;
+  font-size: 1.8rem;
+  line-height: 1.17;
+  padding: 1.5rem 1.8rem;
+  background: $white;
+  border: $input-border;
+  border-radius: $input-border-radius;
+  min-height: 5.5rem;
+  height: 5.5rem;
+  width: 100%;
+  max-width: 100%;
+
+  &::placeholder {
+    transition: $base-transition;
+  }
+
+  &:hover,
+  &:focus {
+    border: $input-focus-border;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="file"],
+input[type="submit"] {
+  font-family: $primary-font;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+// RESET INPUTS STYLES
+
+// input type search remove clear button
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+// Number remove arrow
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// hide placeholder on focus
+input:focus::placeholder {
+  color: transparent;
+}
+
+.form__field {
+  margin-bottom: 2rem;
+
+  label {
+    font-weight: 500;
+    font-size: 2.1rem;
+    display: block;
+    line-height: 1.19;
+    margin-bottom: 1.4rem;
+  }
+}
+
+.input__with-icon {
+  position: relative;
+
+  .input-icon {
+    position: absolute;
+    left: 1.9rem;
+    transform: translateY(-50%);
+    top: 50%;
+  }
+
+  input {
+    padding-left: 4rem;
+  }
+}
+
+.form-info {
+  line-height: 1.375;
+  text-transform: capitalize;
+  color: $secondary-gray-text-color;
+}
+
+.form__field .form-info {
+  margin-top: 1.2rem;
+}
+
+.custom-select {
+  position: relative;
+  border-radius: $secondary-border-radius;
+  transition: $base-transition;
+
+  &:hover {
+    box-shadow: $search-input-hover;
+  }
+
+  &.active {
+    .select-dropdown {
+      max-height: 10.5rem;
+      opacity: 1;
+    }
+
+    .select-head::after {
+      transform: rotate(225deg);
+    }
+  }
+
+  .select-head {
+    border: 1px solid #000;
+    border-radius: $secondary-border-radius;
+    min-width: 7rem;
+    padding: 0.7rem 1.5rem;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 0.7rem;
+      width: 0.7rem;
+      border: solid #000;
+      position: absolute;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translateY(-7px);
+      right: 1.5rem;
+      top: 50%;
+      transition: $base-transition;
+    }
+  }
+
+  .select-dropdown {
+    min-width: 7rem;
+    border-radius: $secondary-border-radius;
+    border: 1px solid #000;
+    overflow: hidden;
+    position: absolute;
+    bottom: 4.1rem;
+    background-color: #fff;
+    max-height: 0;
+    opacity: 0;
+    transition: $base-transition;
+
+    .select-option {
+      height: 2.5rem;
+      padding: 0 1.5rem;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $pagination-hover;
+      }
+    }
+  }
+}
+
+.search-form {
+  width: 100%;
+
+  .form__wrap {
+    .form__field {
+      position: relative;
+      margin-bottom: 0;
+
+      .search-icon {
+        position: absolute;
+        left: 1.9rem;
+        transform: translateY(-50%);
+        top: 50%;
+      }
+
+      input {
+        min-height: 4.5rem;
+        height: 4.5rem;
+        padding: 0 0 0 5rem;
+        border-radius: $secondary-border-radius;
+        transition: $base-transition;
+
+        &:hover,
+        &:focus {
+          border: $input-border;
+          box-shadow: $search-input-hover;
+        }
+      }
+    }
+  }
+}

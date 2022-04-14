@@ -12,6 +12,13 @@ export const updateOffers = (dispatch, offers) => {
   });
 };
 
+export const setPagination = (dispatch, pagination) => {
+  return dispatch({
+    type: "SET_PAGINATION",
+    payload: pagination,
+  });
+};
+
 export const updateSearchKeyword = (dispatch, keyword) => {
   return dispatch({
     type: "SEARCH_KEYWORD",
@@ -19,9 +26,30 @@ export const updateSearchKeyword = (dispatch, keyword) => {
   });
 };
 
-export const newOfferPopup = (dispatch, popup) => {
+export const newOfferPage = (dispatch, value) => {
   return dispatch({
-    type: "OFFER_POPUP",
-    payload: popup,
+    type: "NEW_OFFER_PAGE",
+    payload: value,
+  });
+};
+
+export const myOffersPage = (dispatch, value) => {
+  return dispatch({
+    type: "MY_OFFERS_PAGE",
+    payload: value,
+  });
+};
+
+export const setMyOfferIds = (dispatch, value) => {
+  return dispatch({
+    type: "MY_OFFER_IDS",
+    payload: value,
+  });
+};
+
+export const addIdInMyOfferIds = (dispatch, id) => {
+  return dispatch({
+    type: "ADD_ID_IN_MY_OFFER_IDS",
+    payload: id,
   });
 };

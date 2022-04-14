@@ -5,13 +5,13 @@ const Footer = () => {
   const { state } = useContext(Store);
 
   return (
-    <div className="footer-container">
+    <footer className="footer-container">
       <nav className="chain-data">
         <p>
-          <strong>{state.offers.totalOffers}</strong> offers uploaded on chain
+          <strong>{ state.offers.totalOffers }</strong> offers uploaded on chain
         </p>
       </nav>
-    </div>
+    </footer>
   );
 };
 
